@@ -43,7 +43,7 @@
                     </div>
                     <div class="col-6 col-md-3">
                         <a href="tel:+79180801199" class="xs-visible subheader_phone">8 918 080-11-99</a>
-                        <button class="subheader_btn">заказать звонок</button>
+                        <button data-modal class="subheader_btn">заказать звонок</button>
                     </div>
                 </div>
             </div>
@@ -139,6 +139,25 @@
             <div class="footer_divider"></div>
         </div>
     </footer>
+
+
+
+    <div class="modal">
+        <div class="modal__dialog">
+            <div class="modal__content">
+                <form action="#">
+                    <div data-close class="modal__close" data-close>&times;</div>
+                    <div class="modal__title">Мы свяжемся с вами как можно быстрее!</div>
+                    <input required placeholder="Ваше имя" name="name" type="text" class="modal__input">
+                    <input required placeholder="Ваш номер телефона" name="phone" type="phone" class="modal__input">
+                    <button class="btn btn_dark btn_min">Перезвонить мне</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    
+    
     <script src="js/script.js"></script>
 </body>
 </html>
