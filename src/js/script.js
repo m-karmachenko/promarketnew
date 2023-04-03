@@ -33,4 +33,44 @@ window.addEventListener('DOMContentLoaded', () => {
         modal.classList.remove('show');
         document.body.style.overflow = ''
     });
+
+
+    //Forms
+    const form = document.querySelector('form');
+
+    const message = {
+        loading: 'Загрузка',
+        success: 'Спасибо, скоро мы с вами свяжемся',
+        failure: 'Что-то пошло не так'
+    };
+
+    postData(form);
+
+
+    function postData(form){
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const statusMessage = document.createElement('div');
+            statusMessage.classList.add('status');
+            statusMessage.textContent = message.loading;
+            form.append(statusMessage);
+
+            const requst = new XMLHttpRequest();
+            requst.open('POST', 'mailer/smart.php');
+
+            // requst.setRequestHeader('Content-type', 'multipart/form-data');
+            const formData = new FormData(form);
+
+            requst.send(formData);
+            requst.addEventListener('load', () => {
+                if (requst.status === 200){
+                    console.log(requst.response);
+                    statusMessage.textContent = message.success;
+                } else {
+                    statusMessage.textContent = message.failure;
+                }
+            });
+        })
+    }
 });
