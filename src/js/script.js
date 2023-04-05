@@ -57,12 +57,16 @@ window.addEventListener('DOMContentLoaded', () => {
             form.append(statusMessage);
 
             const requst = new XMLHttpRequest();
-            requst.open('POST', 'mailer/smart.php');
+            requst.open('POST', 'http://127.0.0.1:3000');
 
             // requst.setRequestHeader('Content-type', 'multipart/form-data');
             const formData = new FormData(form);
 
-            requst.send(formData);
+            var object = {};
+            formData.forEach((value, key) => object[key] = value);
+            var json = JSON.stringify(object);
+
+            requst.send(json);
             requst.addEventListener('load', () => {
                 if (requst.status === 200){
                     console.log(requst.response);
